@@ -1,2 +1,147 @@
 @import "modern-normalize.min.css";
 @import "resets.css";
+
+:root{
+    /* https://coolors.co/f0ead6-e5e1d4-b084cc-665687-190933 */
+    --color-eggshell: #f0ead6;
+    --color-9001: #E5E1D4;
+    --color-dark: #3D405B;
+
+    --bg-main: var(--color-9001);
+    /* --bg-main: var(--color-eggshell); */
+
+    --bg-nav: var(--color-dark);
+    --clr-nav: rgb(from white r g b);
+
+    --bg-footer: var(--color-dark);
+    --clr-footer: rgb(from white r g b);
+
+    --bg-block: rgb(from white r g b);
+}
+
+#test{    
+    min-height: 100vh;
+}
+
+body {
+    /* display: grid;
+    grid: 
+    [header-start] "header header header" auto [header-end]
+    [nav-start] "nav nav nav" auto [nav-end]
+    [block-one-start] ". block-one ." auto [block-one-end]
+    [block-two-start] ". block-two ." auto [block-two-end]
+    [footer-start] "footer footer footer" auto [footer-end]
+    / 80px 1fr 80px; */
+    row-gap: 20px;
+    background-color: var(--bg-main);
+}
+
+main{
+    grid-area: header;
+    display: grid;
+    grid:
+    [header-banner-start] "header-banner header-banner header-banner" auto [header-banner-end]
+    [header-content-start] ". header-content ." auto [header-content-end]
+    / 80px 1fr 80px;
+    row-gap: 20px;
+}
+
+main #header-banner {
+    grid-area: header-banner;
+}
+
+main #header-content{
+    grid-area: header-content;
+    background-color: var(--bg-block);
+}
+
+nav {
+    grid-area: nav;
+    background-color: var(--bg-nav);
+    color: var(--clr-nav);
+    padding: 20px 0;
+}
+
+nav a{
+    display: inline-block;
+    color: var(--clr-nav);
+    padding: 10px 20px;
+    border: 1px solid var(--clr-nav);
+    border-radius: 5px;
+}
+
+#block-one{
+    grid-area: block-one;    
+}
+
+#block-two{
+    grid-area: block-two;
+}
+
+footer{
+    grid-area: footer;
+    display: grid;
+    grid:
+    [footer-blocks-start] ". block-one block-two block-three ." [footer-blocks-end]
+    [footer-copy-start] ". . footer-copy . ." auto [footer-copy-end]
+    / 80px 1fr 1fr 1fr 80px;
+    background-color: var(--bg-footer);
+    color: var(--clr-footer);
+}
+
+footer #footer-block-one{
+    grid-area: block-one;
+}
+
+footer #footer-block-two{
+    grid-area: block-two;
+}
+
+footer #footer-block-three{
+    grid-area: block-three;
+}
+
+footer #footer-copyright{
+    grid-area: footer-copy;
+    justify-self: center;
+}
+
+.footer-block{
+    display: grid;
+    grid: [block-title-start] "block-title" auto [block-title-end]
+    [block-content-start] "block-content" auto [block-content-end]
+    / 1fr;
+}
+
+.footer-block header{
+    grid-area: block-title;
+}
+
+.footer-block .footer-block-content{
+    grid-area: block-content;
+}
+
+.block{
+    display: grid;
+    grid:
+    [block-title-start] "block-title" auto [block-title-end]
+    [block-content-start] "block-content" auto [block-content-end]
+    / 1fr;
+    background-color: var(--bg-block);
+}
+
+.block header{
+    grid-area: block-title;
+}
+
+.block .block-content{
+    grid-area: block-content;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-center-evenly{
+    justify-content: space-evenly;
+}
