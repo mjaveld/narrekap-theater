@@ -1,6 +1,8 @@
 services:
   wordpress:
     image: wordpress:6.6.2-php8.3
+    depends_on: 
+      - db
     restart: always
     ports:
       - 8080:80
@@ -13,6 +15,7 @@ services:
     volumes:
       - wp:/var/www/html
       - wp-themes:/var/www/html/wp-content/themes/
+      - ./wp-theme/narrekap-theme:/var/www/html/wp-content/themes/narrekap-theme
       - wp-plugins:/var/www/html/wp-content/plugins/
 
   db:
