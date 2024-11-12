@@ -15,7 +15,7 @@ services:
     volumes:
       - wp:/var/www/html
       - wp-themes:/var/www/html/wp-content/themes/
-      - ./wp-theme/narrekap-theme:/var/www/html/wp-content/themes/narrekap-theme
+      - ./narrekap-theme:/var/www/html/wp-content/themes/narrekap-theme
       - wp-plugins:/var/www/html/wp-content/plugins/
 
   db:
