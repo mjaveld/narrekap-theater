@@ -1,15 +1,311 @@
 /*
-Theme Name: Twenty Twenty-Four
-Theme URI: https://wordpress.org/themes/twentytwentyfour/
-Author: the WordPress team
-Author URI: https://wordpress.org
-Description: Twenty Twenty-Four is designed to be flexible, versatile and applicable to any website. Its collection of templates and patterns tailor to different needs, such as presenting a business, blogging and writing or showcasing work. A multitude of possibilities open up with just a few adjustments to color and typography. Twenty Twenty-Four comes with style variations and full page designs to help speed up the site building process, is fully compatible with the site editor, and takes advantage of new design tools introduced in WordPress 6.4.
-Requires at least: 6.4
+Theme Name: Narrekap Theater Theme
+Theme URI: https://github.com/mjaveld/narrekap-theater
+Author: mjaveld
+Author URI: https://github.com/mjaveld
+Description: Custom made theme for De Narrekap
+Requires at least: 6.6
 Tested up to: 6.6
-Requires PHP: 7.0
-Version: 1.2
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: twentytwentyfour
-Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
+Requires PHP: 8.3
+Version: 1.0
+License: GPL-3.0 license
+License URI: https://github.com/mjaveld/narrekap-theater?tab=GPL-3.0-1-ov-file#readme
+Text Domain: narrekap
+Tags: block-patterns, full-site-editing
 */
+
+:root{
+    /* https://coolors.co/f0ead6-e5e1d4-b084cc-665687-190933 */
+    --color-eggshell: #f0ead6;
+    --color-9001: #E5E1D4;
+    --color-dark: #3D405B;
+
+    --bg-main: var(--color-9001);
+    /* --bg-main: var(--color-eggshell); */
+
+    --bg-nav: var(--color-dark);
+    --clr-nav: rgb(from white r g b);
+
+    --bg-footer: var(--color-dark);
+    --clr-footer: rgb(from white r g b);
+
+    --bg-block: rgb(from white r g b);
+}
+
+#header-banner {
+    --grid-block-amount: 10;
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-block-amount), [col-start] 1fr [col-end]);
+    grid-template-rows: repeat(var(--grid-block-amount), [row-start] 1fr [row-end]);
+}
+
+#header-banner #banner-soon-text{
+    position: absolute;
+    grid-area: 3 / 3
+}
+
+#header-banner #banner-show-title{
+    position: absolute;
+    grid-area: 4 / 3
+}
+
+#header-banner #banner-show-img-poster{
+    position: absolute;
+    grid-area: 2 / 7
+}
+
+#header-banner #banner-show-cta-button{
+    position: absolute;
+    grid-area: 6 / 3
+}
+
+body {
+    background-color: var(--bg-main);
+}
+
+main{
+    grid-area: header;
+    display: grid;
+    grid:
+    [header-banner-start] "header-banner header-banner header-banner header-banner header-banner" auto [header-banner-end]
+    [header-content-start] ". nav-track . header-content ." auto [header-content-end]
+    / 120px auto 16px 1fr 200px;
+    row-gap: 20px;
+}
+
+main #header-banner {
+    grid-area: header-banner;
+}
+
+main #header-content{
+    grid-area: header-content;
+    background-color: var(--bg-block);
+}
+
+nav {
+    grid-area: nav;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-nav);
+    color: var(--clr-nav);
+    padding: 20px 0;
+}
+
+#header-hover{
+    z-index: 1;
+    grid-area: 1 / 2;
+    position: sticky;
+    top: 120px;
+    height: min-content;
+    background-color: var(--bg-nav);
+}
+
+.header-hover-logo{
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-button-container {
+    display: block;
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    margin: auto;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-button{    
+    margin-top: 8px;
+}
+
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 2px;
+}
+
+.menu-button::before {
+    content: '';
+    margin-top: -8px;
+}
+
+.menu-button::after {
+    content: '';
+    margin-top: 8px;
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::before {
+    margin-top: 0px;
+    transform: rotate(405deg);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button {
+    background: rgba(255, 255, 255, 0);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::after {
+    margin-top: 0px;
+    transform: rotate(-405deg);
+}
+
+#menu-toggle ~ .menu li {
+    overflow: hidden;
+    height: 0;
+    transition: 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+#menu-toggle:checked ~ .menu li {
+    overflow: unset;
+    height: 2.5em;
+    transition: 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.testing{
+    grid-area: 5 / 3;
+}
+
+#hm-toggle{
+    /* display: none; */
+}
+
+#hm-label{
+
+}
+
+#hm-icon{
+
+}
+
+.hamburger-menu {
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Bars styles */
+.bar {
+    width: 100%;
+    height: 6px;
+    background-color: #000;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+/* Positioning the bars */
+.top {
+    top: 0; 
+}
+
+.middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bottom {
+    bottom: 0;
+}
+
+nav a{
+    display: inline-block;
+    color: var(--clr-nav);
+    padding: 10px 20px;
+    border: 1px solid var(--clr-nav);
+    border-radius: 5px;
+}
+
+#block-one{
+    grid-area: block-one;    
+}
+
+#block-two{
+    grid-area: block-two;
+}
+
+footer{
+    grid-area: footer;
+    display: grid;
+    grid:
+    [footer-blocks-start] ". block-one block-two block-three ." [footer-blocks-end]
+    [footer-copy-start] ". . footer-copy . ." auto [footer-copy-end]
+    / 80px 1fr 1fr 1fr 80px;
+    background-color: var(--bg-footer);
+    color: var(--clr-footer);
+}
+
+footer #footer-block-one{
+    grid-area: block-one;
+}
+
+footer #footer-block-two{
+    grid-area: block-two;
+}
+
+footer #footer-block-three{
+    grid-area: block-three;
+}
+
+footer #footer-copyright{
+    grid-area: footer-copy;
+    justify-self: center;
+}
+
+.footer-block{
+    display: grid;
+    grid: [block-title-start] "block-title" auto [block-title-end]
+    [block-content-start] "block-content" auto [block-content-end]
+    / 1fr;
+}
+
+.footer-block header{
+    grid-area: block-title;
+}
+
+.footer-block .footer-block-content{
+    grid-area: block-content;
+}
+
+.block{
+    display: grid;
+    grid:
+    [block-title-start] "block-title" auto [block-title-end]
+    [block-content-start] "block-content" auto [block-content-end]
+    / 1fr;
+    background-color: var(--bg-block);
+}
+
+.block header{
+    grid-area: block-title;
+}
+
+.block .block-content{
+    grid-area: block-content;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-center-evenly{
+    justify-content: space-evenly;
+}
